@@ -2042,7 +2042,10 @@ export const listeMots = [
   'zones',
 ];
 
-export const obtenirMotAleatoire = () => {
-  const indexAleatoire = Math.floor(Math.random() + listeMots.length);
+const obtenirMotAleatoire = () => {
+  // SD : Multiplier et non additioner
+ const indexAleatoire = Math.floor(Math.random() * listeMots.length);
   return listeMots[indexAleatoire].toUpperCase();
 };
+
+export default obtenirMotAleatoire;

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Grid, Paper } from '@mui/material';
+import React from "react";
+import { Grid, Paper } from "@mui/material";
 
 interface GrilleMotsProps {
   essais: string[];
@@ -12,35 +12,37 @@ const GrilleMot: React.FC<GrilleMotsProps> = ({
   essaiCourant,
   motCible,
 }) => {
-  const rows = Array.from({ length: 5 }, (_, i) => {
+  // SD : Modification du nombre de rangées pour en avoir 6x5
+  const rows = Array.from({ length: 6 }, (_, i) => {
     const guess =
-      essais[i] || (i === essais.length ? essaiCourant.toUpperCase() : '');
-    return guess.padEnd(5, ' ');
+      essais[i] || (i === essais.length ? essaiCourant.toUpperCase() : "");
+    return guess.padEnd(5, " ");
   });
 
   const obtenirCouleurLettre = (letter: string, index: number) => {
-    if (!motCible) return 'default';
-    if (motCible[index] === letter) return 'success.main';
-    if (motCible.includes(letter)) return 'warning.main';
-    return 'grey.500';
+    if (!motCible) return "default";
+    if (motCible[index] === letter) return "success.main";
+    if (motCible.includes(letter)) return "warning.main";
+    return "grey.500";
   };
 
   return (
-    <Grid container spacing={1} sx={{ marginTop: 2 }}>
+    // SD : Ajout d'une taille pour la grille
+    <Grid container spacing={1} sx={{ marginTop: 2, width: "338px" }}>
       {rows.map((row, rowIndex) => (
         <Grid container item spacing={1} key={rowIndex}>
-          {row.split('').map((letter, index) => (
+          {row.split("").map((letter, index) => (
             <Grid item xs={2.4} key={index}>
               <Paper
                 sx={{
                   height: 60,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
                   backgroundColor: obtenirCouleurLettre(letter, index),
-                  color: 'white',
+                  color: "white",
                   fontSize: 24,
-                  fontWeight: 'bold',
+                  fontWeight: "bold",
                 }}
               >
                 {letter}
